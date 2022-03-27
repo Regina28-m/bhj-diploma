@@ -12,7 +12,9 @@ class TransactionsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-
+if(!element) throw new Error('Элемент не существует');
+    this.element = element;
+    this.registerEvents();
   }
   /**
    * Регистрирует обработчики нажатия на
@@ -21,6 +23,12 @@ class TransactionsWidget {
    * экземпляра окна
    * */
   registerEvents() {
+this.element.getElementsByClassName('create-income-button')[0].onclick = () => {
+      App.getModal('newIncome').open();
+       }
 
+    this.element.getElementsByClassName('create-expense-button')[0].onclick = () => {
+      App.getModal('newExpense').open();
+    }
   }
 }
